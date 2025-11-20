@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurateur PC</title>
+    <style>
+        /* Réinitialisation des styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styles généraux pour tout l'écran */
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Conteneur principal qui prend toute la hauteur */
+        .container {
+            background-color: #0d1b2a;
+            padding: 40px;
+            border-radius: 0;
+            width: 100%;
+            min-height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Contenu principal centré verticalement */
+        .main-content {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Styles pour les sélecteurs et boutons */
+        select, button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        /* Styles spécifiques pour les selects */
+        select {
+            background: rgba(30, 41, 59, 0.9);
+            color: white;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Styles pour le bouton */
+        button {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Indicateur de chargement */
+        .loader {
+            display: none;
+            margin-top: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader div {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6, #00ffff);
+            margin: 0 8px;
+            border-radius: 50%;
+            animation: bounce 0.6s infinite alternate;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        @keyframes bounce {
+            from { 
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            to { 
+                transform: translateY(-15px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .loader div:nth-child(2) { animation-delay: 0.2s; }
+        .loader div:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Conteneur de l'ordinateur */
+        .computer-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        /* Lueur de l'écran */
+        .screen-glow {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 45px;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 255, 0.8) 0%, 
+                rgba(0, 200, 255, 0.6) 50%, 
+                rgba(0, 150, 255, 0.3) 100%);
+            border-radius: 6px;
+            animation: screenFlicker 2s infinite alternate;
+            z-index: 2;
+            filter: blur(1px);
+        }
+
+        /* Lumière émise par l'ordinateur */
+        .computer-light {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 150px;
+            background: radial-gradient(ellipse, 
+                rgba(0, 255, 255, 0.4) 0%, 
+                rgba(0, 200, 255, 0.2) 30%, 
+                rgba(0, 150, 255, 0.1) 50%, 
+                rgba(0, 100, 255, 0) 70%);
+            border-radius: 50%;
+            animation: lightPulse 3s infinite alternate;
+            z-index: 1;
+        }
+
+        /* Animation de scintillement de l'écran */
+        @keyframes screenFlicker {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+                background: linear-gradient(135deg, 
+                    rgba(0, 255, 255, 0.8) 0%, 
+                    rgba(0, 200, 255, 0.6) 50%, 
+                    rgba(0, 150, 255, 0.3) 100%);
+            }
+            25% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.02);
+                background: linear-gradient(135deg, 
+                    rgba(0, 255, 255, 0.9) 0%, 
+                    rgba(0, 220, 255, 0.7) 50%, 
+                    rgba(0, 180, 255, 0.4) 100%);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-50%) scale(0.98);
+                background: linear-gradient(135deg, 
+                    rgba(0, 230, 255, 0.7) 0%, 
+                    rgba(0, 180, 255, 0.5) 50%, 
+                    rgba(0, 140, 255, 0.2) 100%);
+            }
+            75% {
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1.01);
+                background: linear-gradient(135deg, 
+                    rgba(0, 240, 255, 0.85) 0%, 
+                    rgba(0, 210, 255, 0.65) 50%, 
+                    rgba(0, 170, 255, 0.35) 100%);
+            }
+        }
+
+        /* Animation de pulsation de la lumière */
+        @keyframes lightPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        /* Image de l'ordinateur */
+        .computer-img {
+            position: relative;
+            z-index: 3;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+            animation: computerFloat 4s ease-in-out infinite;
+            width: 120px;
+            height: auto;
+        }
+
+        /* Animation de flottement */
+        @keyframes computerFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Style du titre */
+        h2 {
+            margin: 20px 0 30px 0;
+            color: #e0e7ff;
+            font-size: 2.2em;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+            background: linear-gradient(135deg, #00ffff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Style des labels */
+        label {
+            display: block;
+            text-align: left;
+            margin: 20px 0 8px 5px;
+            color: #c7d2fe;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Responsive pour très grands écrans */
+        @media (min-width: 1200px) {
+            .main-content {
+                max-width: 600px;
+            }
+            
+            .computer-img {
+                width: 140px;
+            }
+            
+            h2 {
+                font-size: 2.5em;
+            }
+        }
+
+        /* Responsive pour tablettes */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .main-content {
+                max-width: 100%;
+            }
+        }
+
+        /* Responsive pour mobiles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+            
+            select, button {
+                padding: 12px;
+                font-size: 15px;
+            }
+            
+            .computer-img {
+                width: 100px;
+            }
+        }
+    </style>
+
+    <script>
+        function afficherLoader() {
+            document.querySelector("button").style.display = "none";
+            document.querySelector(".loader").style.display = "flex";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- Section de l'ordinateur animé -->
+            <div class="computer-container">
+                <div class="computer-light"></div>
+                <div class="screen-glow"></div>
+                <img class="computer-img" src="https://cdn-icons-png.flaticon.com/512/428/428001.png" alt="Computer">
+            </div>
+
+            <h2>🖥 Configurateur PC</h2>
+
+            <!-- Formulaire de configuration -->
+            <form action="/verifier" method="POST" onsubmit="afficherLoader()">
+
+                <label>Choisir CPU :</label>
+                <select name="cpu">
+                    {% for item in cpus %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Carte Mère :</label>
+                <select name="cm">
+                    {% for item in cms %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>RAM :</label>
+                <select name="ram">
+                    {% for item in rams %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Carte Graphique :</label>
+                <select name="gpu">
+                    {% for item in gpus %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Alimentation :</label>
+                <select name="alim">
+                    {% for item in alims %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">🚀 Valider la Configuration</button>
+            </form>
+
+            <!-- Indicateur de chargement -->
+            <div class="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

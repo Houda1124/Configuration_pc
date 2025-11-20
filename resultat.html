@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultat - Configurateur PC</title>
+    <style>
+        /* Réinitialisation des styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styles généraux pour tout l'écran */
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Conteneur principal qui prend toute la hauteur */
+        .container {
+            background-color: #0d1b2a;
+            padding: 50px;
+            border-radius: 0;
+            width: 100%;
+            min-height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Contenu principal centré */
+        .main-content {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Styles pour les messages de résultat */
+        .result-message {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: messagePulse 2s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+
+        @keyframes messagePulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                transform: scale(1.02); 
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        /* Message de succès */
+        .success {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.3));
+            color: #4ade80;
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Message d'erreur */
+        .error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.3));
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.4);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Bouton de retour */
+        .btn {
+            margin-top: 35px;
+            padding: 18px 40px;
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border: none;
+            color: white;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Conteneur de l'ordinateur */
+        .computer-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.6));
+        }
+
+        /* Lueur de l'écran */
+        .screen-glow {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 45px;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 255, 0.8) 0%, 
+                rgba(0, 200, 255, 0.6) 50%, 
+                rgba(0, 150, 255, 0.3) 100%);
+            border-radius: 6px;
+            animation: screenFlicker 2s infinite alternate;
+            z-index: 2;
+            filter: blur(1px);
+        }
+
+        /* Lumière émise par l'ordinateur */
+        .computer-light {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 150px;
+            background: radial-gradient(ellipse, 
+                rgba(0, 255, 255, 0.4) 0%, 
+                rgba(0, 200, 255, 0.2) 30%, 
+                rgba(0, 150, 255, 0.1) 50%, 
+                rgba(0, 100, 255, 0) 70%);
+            border-radius: 50%;
+            animation: lightPulse 3s infinite alternate;
+            z-index: 1;
+        }
+
+        /* Animation de scintillement de l'écran */
+        @keyframes screenFlicker {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+                background: linear-gradient(135deg, 
+                    rgba(0, 255, 255, 0.8) 0%, 
+                    rgba(0, 200, 255, 0.6) 50%, 
+                    rgba(0, 150, 255, 0.3) 100%);
+            }
+            25% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.02);
+                background: linear-gradient(135deg, 
+                    rgba(0, 255, 255, 0.9) 0%, 
+                    rgba(0, 220, 255, 0.7) 50%, 
+                    rgba(0, 180, 255, 0.4) 100%);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-50%) scale(0.98);
+                background: linear-gradient(135deg, 
+                    rgba(0, 230, 255, 0.7) 0%, 
+                    rgba(0, 180, 255, 0.5) 50%, 
+                    rgba(0, 140, 255, 0.2) 100%);
+            }
+            75% {
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1.01);
+                background: linear-gradient(135deg, 
+                    rgba(0, 240, 255, 0.85) 0%, 
+                    rgba(0, 210, 255, 0.65) 50%, 
+                    rgba(0, 170, 255, 0.35) 100%);
+            }
+        }
+
+        /* Animation de pulsation de la lumière */
+        @keyframes lightPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        /* Image de l'ordinateur */
+        .computer-img {
+            position: relative;
+            z-index: 3;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+            animation: computerFloat 4s ease-in-out infinite;
+            width: 120px;
+            height: auto;
+        }
+
+        /* Animation de flottement */
+        @keyframes computerFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Responsive pour très grands écrans */
+        @media (min-width: 1200px) {
+            .main-content {
+                max-width: 600px;
+            }
+            
+            .computer-img {
+                width: 140px;
+            }
+            
+            .result-message {
+                font-size: 26px;
+                padding: 30px;
+            }
+        }
+
+        /* Responsive pour tablettes */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .main-content {
+                max-width: 100%;
+            }
+            
+            .result-message {
+                font-size: 22px;
+                padding: 20px;
+            }
+        }
+
+        /* Responsive pour mobiles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .result-message {
+                font-size: 20px;
+                padding: 18px;
+                margin: 25px 0;
+            }
+            
+            .btn {
+                padding: 16px 30px;
+                font-size: 16px;
+            }
+            
+            .computer-img {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="main-content">
+            <!-- Section de l'ordinateur animé -->
+            <div class="computer-container">
+                <div class="computer-light"></div>
+                <div class="screen-glow"></div>
+                <img class="computer-img" src="https://cdn-icons-png.flaticon.com/512/428/428001.png" alt="Computer">
+            </div>
+
+            <!-- Message de résultat -->
+            {% if "compatible" in message %}
+                <div class="result-message success">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="result-message error">
+                    {{ message }}
+                </div>
+            {% endif %}
+
+            <!-- Bouton de retour -->
+            <button class="btn" onclick="window.location.href='/'">
+                🔙 Retour au Configurateur
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

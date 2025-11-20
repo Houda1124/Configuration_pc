@@ -1,0 +1,56 @@
+{
+  "processeurs": [
+    {"id": "proc_3600", "nom": "AMD Ryzen 5 3600", "socket": "AM4", "tdp_w": 65},
+    {"id": "proc_5600x", "nom": "AMD Ryzen 5 5600X", "socket": "AM4", "tdp_w": 65},
+    {"id": "proc_5800x", "nom": "AMD Ryzen 7 5800X", "socket": "AM4", "tdp_w": 105},
+    {"id": "proc_5900x", "nom": "AMD Ryzen 9 5900X", "socket": "AM4", "tdp_w": 105},
+    {"id": "proc_i3_12100f", "nom": "Intel Core i3-12100F", "socket": "LGA1700", "tdp_w": 60},
+    {"id": "proc_i5_12400f", "nom": "Intel Core i5-12400F", "socket": "LGA1700", "tdp_w": 65},
+    {"id": "proc_i7_12700k", "nom": "Intel Core i7-12700K", "socket": "LGA1700", "tdp_w": 125},
+    {"id": "proc_i9_12900k", "nom": "Intel Core i9-12900K", "socket": "LGA1700", "tdp_w": 125}
+  ],
+
+  "carte_mere": [
+    {"id": "cm_b450", "nom": "MSI B450 Tomahawk", "socket": "AM4", "type_ram": "DDR4", "frequence_ram_max": 3466, "format": "ATX"},
+    {"id": "cm_b550", "nom": "ASUS B550", "socket": "AM4", "type_ram": "DDR4", "frequence_ram_max": 3600, "format": "ATX"},
+    {"id": "cm_x570", "nom": "MSI X570 Gaming Plus", "socket": "AM4", "type_ram": "DDR4", "frequence_ram_max": 4400, "format": "ATX"},
+    {"id": "cm_a520m", "nom": "Gigabyte A520M S2H", "socket": "AM4", "type_ram": "DDR4", "frequence_ram_max": 3200, "format": "mATX"},
+    {"id": "cm_h610", "nom": "ASRock H610M-HDV", "socket": "LGA1700", "type_ram": "DDR4", "frequence_ram_max": 3200, "format": "mATX"},
+    {"id": "cm_b660", "nom": "Gigabyte B660M", "socket": "LGA1700", "type_ram": "DDR4", "frequence_ram_max": 3200, "format": "mATX"},
+    {"id": "cm_z690", "nom": "ASUS Z690 Prime", "socket": "LGA1700", "type_ram": "DDR5", "frequence_ram_max": 5600, "format": "ATX"},
+    {"id": "cm_z790", "nom": "MSI Z790 Carbon", "socket": "LGA1700", "type_ram": "DDR5", "frequence_ram_max": 6000, "format": "ATX"}
+  ],
+
+  "memoires": [
+    {"id": "ram_ddr4_2666_8go", "nom": "Mémoire DDR4 8 Go 2666 MHz", "type": "DDR4", "frequence_mhz": 2666, "taille_go": 8},
+    {"id": "ram_ddr4_3200_8go", "nom": "Mémoire DDR4 8 Go 3200 MHz", "type": "DDR4", "frequence_mhz": 3200, "taille_go": 8},
+    {"id": "ram_ddr4_3200_16go", "nom": "Mémoire DDR4 16 Go 3200 MHz", "type": "DDR4", "frequence_mhz": 3200, "taille_go": 16},
+    {"id": "ram_ddr4_3600_16go", "nom": "Mémoire DDR4 16 Go 3600 MHz", "type": "DDR4", "frequence_mhz": 3600, "taille_go": 16},
+    {"id": "ram_ddr4_4000_32go", "nom": "Mémoire DDR4 32 Go 4000 MHz", "type": "DDR4", "frequence_mhz": 4000, "taille_go": 32},
+    {"id": "ram_ddr5_4800_16go", "nom": "Mémoire DDR5 16 Go 4800 MHz", "type": "DDR5", "frequence_mhz": 4800, "taille_go": 16},
+    {"id": "ram_ddr5_5200_16go", "nom": "Mémoire DDR5 16 Go 5200 MHz", "type": "DDR5", "frequence_mhz": 5200, "taille_go": 16},
+    {"id": "ram_ddr5_5600_32go", "nom": "Mémoire DDR5 32 Go 5600 MHz", "type": "DDR5", "frequence_mhz": 5600, "taille_go": 32}
+  ],
+
+  "cartes_graphiques": [
+    {"id": "cg_gtx1650", "nom": "NVIDIA GTX 1650", "tdp_w": 75, "longueur_mm": 180},
+    {"id": "cg_rtx3050", "nom": "NVIDIA RTX 3050", "tdp_w": 130, "longueur_mm": 200},
+    {"id": "cg_rtx3060", "nom": "NVIDIA RTX 3060", "tdp_w": 170, "longueur_mm": 245},
+    {"id": "cg_rtx3070", "nom": "NVIDIA RTX 3070", "tdp_w": 220, "longueur_mm": 267},
+    {"id": "cg_rtx4070", "nom": "NVIDIA RTX 4070", "tdp_w": 200, "longueur_mm": 250},
+    {"id": "cg_rx6600", "nom": "AMD RX 6600", "tdp_w": 132, "longueur_mm": 210},
+    {"id": "cg_rx6700xt", "nom": "AMD RX 6700XT", "tdp_w": 230, "longueur_mm": 267},
+    {"id": "cg_rx7800xt", "nom": "AMD RX 7800XT", "tdp_w": 263, "longueur_mm": 280}
+  ],
+
+  "alimentations": [
+    {"id": "alim_450w", "nom": "EVGA 450W 80+ Bronze", "puissance_w": 450},
+    {"id": "alim_500w", "nom": "Corsair CV500 80+ Bronze", "puissance_w": 500},
+    {"id": "alim_550w", "nom": "CoolerMaster 550W 80+ Bronze", "puissance_w": 550},
+    {"id": "alim_600w", "nom": "Thermaltake Smart 600W", "puissance_w": 600},
+    {"id": "alim_650w", "nom": "Seasonic S12III 650W 80+ Gold", "puissance_w": 650},
+    {"id": "alim_750w", "nom": "Corsair RM750 80+ Gold", "puissance_w": 750},
+    {"id": "alim_850w", "nom": "MSI MPG A850GF 80+ Gold", "puissance_w": 850},
+    {"id": "alim_1000w", "nom": "ASUS ROG Strix 1000W 80+ Gold", "puissance_w": 1000}
+  ]
+}
